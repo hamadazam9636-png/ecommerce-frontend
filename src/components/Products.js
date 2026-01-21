@@ -99,7 +99,7 @@ const Products = () => {
   };
 
   fetchProducts();
-}, []);
+}, [REACT_APP_API_BASE_URL]);
   //   const renderStars = (rating) => {
   //   const fullStars = Math.floor(rating);
   //   const hasHalfStar = rating % 1 !== 0;
