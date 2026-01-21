@@ -82,8 +82,7 @@ const Products = () => {
    const [loading, setLoading] = useState(true);
    const [error, setError] = useState('');
    const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
- useEffect(() => {
-  const fetchProducts = async () => {
+    const fetchProducts = async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${REACT_APP_API_BASE_URL}/products/`);
@@ -97,9 +96,9 @@ const Products = () => {
       setLoading(false);
     }
   };
-
+ useEffect(() => {
   fetchProducts();
-}, [REACT_APP_API_BASE_URL]);
+});
   //   const renderStars = (rating) => {
   //   const fullStars = Math.floor(rating);
   //   const hasHalfStar = rating % 1 !== 0;
