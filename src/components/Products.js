@@ -1,4 +1,4 @@
-import React, { useContext,useState,useEffect } from 'react';
+import React, { useContext,useState,useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Products.css';
 import { CartContext } from '../context/CartContext';
@@ -81,24 +81,23 @@ const Products = () => {
    const [products, setProducts] = useState([]);
    const [loading, setLoading] = useState(true);
    const [error, setError] = useState('');
-   const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-    const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`${REACT_APP_API_BASE_URL}/products/`);
-      console.log(response.data);  // debug here
-      setProducts(response.data);
-      setError('');
-    } catch (err) {
-      console.error('Error fetching products:', err);
-      setError('Failed to fetch products from server');
-    } finally {
-      setLoading(false);
-    }
-  };
- useEffect(() => {
+  const fetchProducts = useCallback(async () => {
+  setLoading(true);
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/products`);
+    setProducts(response.data);
+    setError('');
+  } catch (err) {
+    setError('Failed to fetch products from server');
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+}, []); // empty deps: function never changes
+
+useEffect(() => {
   fetchProducts();
-});
+}, [fetchProducts]);
   //   const renderStars = (rating) => {
   //   const fullStars = Math.floor(rating);
   //   const hasHalfStar = rating % 1 !== 0;
