@@ -81,12 +81,12 @@ const Products = () => {
    const [products, setProducts] = useState([]);
    const [loading, setLoading] = useState(true);
    const [error, setError] = useState('');
-   const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+   const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
  useEffect(() => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${API_BASE_URL}/products/`);
+      const response = await axios.get(`${REACT_APP_API_BASE_URL}/products/`);
       console.log(response.data);  // debug here
       setProducts(response.data);
       setError('');
