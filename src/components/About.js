@@ -57,6 +57,7 @@ const About = () => {
         <div className="about-content">
           <div className="about-text">
             <h3>Welcome to Hadi Store</h3>
+            
             <p>
               We are a leading e-commerce platform dedicated to providing you with the best shopping experience. 
               With over 10 years of experience in the industry, we have served millions of satisfied customers 
