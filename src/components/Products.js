@@ -84,7 +84,8 @@ const Products = () => {
   const fetchProducts = useCallback(async () => {
   setLoading(true);
   try {
-    const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/products`);
+const response = await axios.get("https://hadi-store.up.railway.app/api/products");
+
     setProducts(response.data);
     setError('');
   } catch (err) {
