@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Admin.css';
 
-const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function AdminDashboard() {
   const [products, setProducts] = useState([]);
