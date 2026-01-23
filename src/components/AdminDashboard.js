@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Admin.css';
 
+const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function AdminDashboard() {
   const [products, setProducts] = useState([]);
@@ -39,7 +40,7 @@ function AdminDashboard() {
 
     try {
       const response = await axios.get(
-        `https://hadi-store.up.railway.app/api/products/owner_products`,
+        `${REACT_APP_API_BASE_URL}/products/owner_products/`,
         {
           headers: {
             Authorization: `Token ${authToken}`,
@@ -62,7 +63,7 @@ function AdminDashboard() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`https://hadi-store.up.railway.app/api/products/api-token-auth/`, {
+      const response = await axios.post(`${REACT_APP_API_BASE_URL}/api-token-auth/`, {
         username: loginData.username,
         password: loginData.password
       }, {
@@ -173,9 +174,9 @@ function AdminDashboard() {
     };
 
     if (editingId) {
-      await axios.put(`https://hadi-store.up.railway.app/api/products/${editingId}/`, data, config);
+      await axios.put(`${REACT_APP_API_BASE_URL}/products/${editingId}/`, data, config);
     } else {
-      await axios.post(`https://hadi-store.up.railway.app/api/products/`, data, config);
+      await axios.post(`${REACT_APP_API_BASE_URL}/products/`, data, config);
     }
 
     setFormData({ name: '', description: '', price: '', stock: '', available: true });
@@ -210,7 +211,7 @@ function AdminDashboard() {
 
     try {
       const authToken = localStorage.getItem('authToken');
-      await axios.delete(`https://hadi-store.up.railway.app/api/products/${id}/`, {
+      await axios.delete(`${REACT_APP_API_BASE_URL}/products/${id}/`, {
         headers: { Authorization: `Token ${authToken}` }
       });
       fetchProducts();
